@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "22672803-6266-4a7b-b7fc-8c176e3f835c",
+		"name": "JIRA API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "assignedToMe",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "youremail@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://naspersclassifieds.atlassian.net/rest/api/2/search?jql=assignee=daniel.horowitz",
+					"protocol": "https",
+					"host": [
+						"naspersclassifieds",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"search"
+					],
+					"query": [
+						{
+							"key": "jql",
+							"value": "assignee=daniel.horowitz"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transitionIssue",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "youremail@example.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transition\": {\n        \"id\": \"381\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://naspersclassifieds.atlassian.net/rest/api/3/issue/SHD-5032/transitions",
+					"protocol": "https",
+					"host": [
+						"naspersclassifieds",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue",
+						"SHD-5032",
+						"transitions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTransitions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "youremail@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transition\": {\n        \"id\": \"401\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://naspersclassifieds.atlassian.net/rest/api/3/issue/SHD-5032/transitions",
+					"protocol": "https",
+					"host": [
+						"naspersclassifieds",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue",
+						"SHD-5032",
+						"transitions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit issue",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "youremail@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"update\": {\n\t\t\"fixVersions\" : [\n            {\"set\":\n                [\n                    {\"name\" : \"Android-3.4.5\"}\n                ]\n            }\n        ]\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://naspersclassifieds.atlassian.net/rest/api/3/issue/SHD-5032",
+					"protocol": "https",
+					"host": [
+						"naspersclassifieds",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue",
+						"SHD-5032"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
