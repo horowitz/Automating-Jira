@@ -5,7 +5,8 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import kotlin.streams.toList
 
-const val prefix = "SHD"
+const val prefix = "YOUR_JIRA_PREFIX"
+const val transitionId = "YOUR_JIRA_TRANSITION_ID"
 
 open class ChangelogTask : DefaultTask() {
 
@@ -19,21 +20,16 @@ open class ChangelogTask : DefaultTask() {
     fun sendMessage() {
         val tickets = fetchJiraTickets(oldTag,newTag)
         tickets.forEach { ticket ->
-            updateChangelog(ticket)
             println("processing $ticket...")
-            val hasTransitioned = if (transitionIssue(ticket).isSuccessful) "OK ✅" else "FAIL ❌"
+            val hasTransitioned = if (transitionIssue(ticket, transitionId).isSuccessful) "OK ✅" else "FAIL ❌"
             val setFixVersion = if (setFixVersion(ticket, "Android-$versionName").isSuccessful) "OK ✅" else "FAIL ❌"
             println("$ticket transition $hasTransitioned")
             println("$ticket set fix version to $versionName $setFixVersion")
         }
     }
 
-    private fun updateChangelog(ticket: String) {
-
-    }
-
-    private fun transitionIssue(id: String) =
-            jiraApi.transitionIssue(id, JiraTransitionBody(JiraTransition("381"))).execute()
+    private fun transitionIssue(id: String, transitionId: String) =
+            jiraApi.transitionIssue(id, JiraTransitionBody(JiraTransition(transitionId))).execute()
 
     private fun setFixVersion(id: String, version: String) =
             jiraApi.editIssue(id, JiraUpdateBody(JiraUpdate(listOf(JiraSetCommand(listOf(SetCommand(version))))))).execute()
