@@ -36,7 +36,7 @@ class RetrofitAdapter {
                     .addInterceptor(BasicAuthInterceptor(user, password))
                     .build()
 
-            val url = "your-jira-url"
+            val url = "http://yourJiraUrl.com"
             this.retrofit = Retrofit.Builder()
                     .baseUrl(url)
                     .client(client)
