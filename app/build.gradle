@@ -24,6 +24,8 @@ android {
 
 task updateChangelog(type: ChangelogTask) {
     versionName = android.defaultConfig.versionName
+    oldTag = "test/v1"
+    newTag = "test/v2"
 }
 
 dependencies {
